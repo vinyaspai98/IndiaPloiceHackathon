@@ -1,5 +1,6 @@
 from selenium import webdriver
 import bs4
+import json
 from selenium.webdriver.common.keys import Keys
 from time import sleep
 from selenium.common.exceptions import TimeoutException
@@ -18,6 +19,7 @@ password = driver.find_element_by_xpath("/html/body/div/main/div/form/div[2]/inp
 password.send_keys('vinnu1998')
 button = driver.find_element_by_xpath("/html/body/div/main/div/form/div[3]/button")
 button.click()
+time.sleep(25)
 search=driver.find_element_by_xpath("/html/body/header/div/form/div/div/div/div/div[1]/div/input")
 search.send_keys("vinyas")
 ppl = driver.find_element_by_xpath("/html/body/header/div/form/div/div/div/div/div[2]/button")
@@ -45,21 +47,30 @@ for k in pp:
     ele1 = driver.page_source
     src1 = bs4.BeautifulSoup(ele1, 'lxml')
     name = src1.find("li", {"class": "inline t-24 t-black t-normal break-words"})
-    print("name"+name.text.strip())
+    name1=""
+    bio1=""
+    loc1=""
+    abt1=""
+    name1=name.text.strip()
+    # print("Name:"+name1)
     work=src1.find_all("span",{"class":"text-align-left ml2 t-14 t-black t-bold full-width lt-line-clamp lt-line-clamp--multi-line ember-view"})
     w1=[]
     for w in work:
         w1.append(w.text.strip("\n"))
-    print(w1)
+    # print(w1)
     bio=src1.find("h2",{"class":"mt1 t-18 t-black t-normal"})
     if bio:
-        print(bio.text.strip())
+        bio1=bio.text.strip()
+        # print(bio1)
     loc=src1.find("li",{"class":"t-16 t-black t-normal inline-block"})
     if loc:
-        print(loc.text.strip())
+        loc1=loc.text.strip()
+        # print(loc.text.strip())
+
     abt=src1.find("span",{"class":"lt-line-clamp__raw-line"})
     if abt:
-        print(abt.text.strip())
+        abt1=abt.text.strip()
+        # print(abt.text.strip())
     # exp=[]
     # e=src.find_all("ul",{"class":"pv-profile-section__section-info section-info pv-profile-section__section-info--has-no-more"})
     # if(len(e)):
@@ -79,8 +90,26 @@ for k in pp:
     #         print(c)
     # for i in lang:
     #     print(i.get_text())
-    interests=src1.find("span", {"class": "pv-profile-section__section-info"})
-    print(interests)
+    # interests=src1.find("li", {"class":"pv-accomplishments-block__summary-list-item"})
+    # print(interests)
+    edu=""
+    wo=""
+    if(len(w1)==1):
+        edu=w1[0]
+        wo=""
+    if(len(w1)==2):
+        edu=w1[1]
+        wo=w1[0]
+    x={
+        "name":name1,
+        "work":wo,
+        "education":edu,
+        "bio":bio1,
+        "location":loc1,
+        "about":abt1
+
+    }
+    print(x)
 
 
 driver.close()
