@@ -84,7 +84,14 @@ export default function SearchAppBar() {
     {
 
 
-      
+      var playersRef = ref.child("users/"+e.target.value);
+      playersRef.update ({
+        linked_in_state: "true",
+        facebook_state: "true",
+        truecaller_state: "true",
+        instagram_state: "true",
+
+      });
     //   console.log(e.target.value);
     //   ref.on("value", function(data) {
     //     console.log(data.val());

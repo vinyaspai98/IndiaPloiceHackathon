@@ -31,17 +31,7 @@ const styles = () => ({
 });
 
 class Card extends React.Component {
-    // constructor(props) {
-    //     super(props);
-        
-    // }
-
-  state = {
-      open: [],
-      data: [],
-      seeMore: [],
-  };
-
+   
   
 
   handleClick = (i) => {
