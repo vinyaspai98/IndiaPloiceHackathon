@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import SearchAppBar from './Components/appbar';
+import CardList from './Components/Cards/cardList';
+import Icons from './Components/Cards/mapIcon';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+
+  constructor() {
+    super()
+    this.state={
+        Icons: Icons,
+    }
+}
+
+  render(){
+    return (
+      <div >
+        <SearchAppBar />
+        {/* <CardList Icons={this.state.Icons} /> */}
+      </div>
+    );
+  }
 }
 
 export default App;
