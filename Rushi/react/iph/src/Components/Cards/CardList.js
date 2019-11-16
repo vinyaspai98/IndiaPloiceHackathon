@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import CardList from './CardList'
+import { Typography } from '@material-ui/core';
 
 
 const styles = () => ({
@@ -17,13 +17,20 @@ const styles = () => ({
         padding: 0,
     },
     paper: {
-      padding: 35,
+      padding: 15,
       textAlign: 'center',
+      height: 50,
       // color: theme.palette.text.secondary,
     },
     container: {
       paddingTop: 20,
-      paddingLeft: 200,
+      // textAlign: 'center',
+      // color: theme.palette.text.secondary,
+    },
+    img: {
+      width: 80,
+      height: 80,
+      borderRadius: 20,
       // textAlign: 'center',
       // color: theme.palette.text.secondary,
     },
@@ -31,37 +38,27 @@ const styles = () => ({
 });
 
 class Card extends React.Component {
-    // constructor(props) {
-    //     super(props);
-        
-    // }
 
-  state = {
-      open: [],
-      data: [],
-      seeMore: [],
-  };
-
-  
-
-  handleClick = (i) => {
-    
-  };
-
-  
 
 
   getListItem() {
-      const { classes, data } = this.props;
-      console.log(data);
+      const { classes, item } = this.props;
+      console.log(item);
 
       return(
-        <div className={classes.container}>
-          {
-            data.map((item,index) => {
-              return (<CardList item = {item}/>)
-            })
-          }
+        <div>
+    <Grid container spacing={3}>
+       
+        <Grid item xs={1}>
+          <img className={classes.img} src={item.img}/>
+        </Grid>
+        <Grid item xs={8}>
+          <Paper className={classes.paper}>
+              <Typography>Number of results found ...</Typography>
+          </Paper>
+        </Grid>
+       
+      </Grid>
         </div>
       )
       
