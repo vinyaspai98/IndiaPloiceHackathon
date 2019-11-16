@@ -6,11 +6,24 @@ import Grid from '@material-ui/core/Grid';
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
+    paddingLeft: 220,
   },
   paper: {
     padding: theme.spacing(2),
     textAlign: 'center',
     color: theme.palette.text.secondary,
+  },
+  paper1: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+    borderRadius: 20,
+  },
+  paper2: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+    height: 70,
   },
 }));
 
@@ -18,14 +31,17 @@ const Card = ({ name, img, id, data}) => {
   const classes = useStyles();
 
   return (
-    <div className="ma2">
+        <div className="ma3">
         <div className={classes.root}>
       <Grid container spacing={3}>
-        <Grid item xs={3}>
-          <Paper className={classes.paper}>{ img }</Paper>
+        <Grid item xs={1} >
+          <Paper className={classes.paper1}><img src={`${img}`} /></Paper>
         </Grid>
-        <Grid item xs={9}>
-          <Paper className={classes.paper}>data from firebase</Paper>
+        <Grid item xs={1} >
+          hey
+        </Grid>
+        <Grid item xs={7}>
+          <Paper className={`sizing ${classes.paper2}`}>data from firebase</Paper>
         </Grid>
       </Grid>
     </div>
