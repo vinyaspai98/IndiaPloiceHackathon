@@ -10,7 +10,7 @@ from selenium.webdriver.support import expected_conditions
 from selenium.common.exceptions import NoSuchElementException
 import time
 data={}
-driver = webdriver.Chrome('C:\\Users\\lenovo\\PycharmProjects\\IPH\\chromedriver')
+driver = webdriver.Chrome("/home/vinyas/Desktop/police_hackathon/chromedriver")
 driver.get('https://www.instagram.com/accounts/login/')
 print("Opened instagram...")
 #dom = driver.find_element_by_xpath('//*')
