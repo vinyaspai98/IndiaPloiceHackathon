@@ -10,7 +10,7 @@ class App extends Component {
     super()
     this.state={
         Icons: Icons,
-        data: '',
+        
     }
 }
 
@@ -18,7 +18,7 @@ class App extends Component {
     return (
       <div >
         <Search />
-        <CardList Icons={this.state.Icons} />
+        
       </div>
     );
   }
