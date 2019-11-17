@@ -25,7 +25,7 @@ def listener(event):
         st = '\n'
         fh.write(st)
         driver = webdriver.Chrome('/home/vinyas/Desktop/police_hackathon/chromedriver')
-        driver.get("https://www.facebook.com/login.php?login_attempt=1&lwv=110")
+        driver.get("https://www.facebook.com")
 
         # getIn = input()
 
@@ -34,15 +34,32 @@ def listener(event):
 
         time.sleep(1)
 
-        ele = driver.find_element_by_id('email')
-        ele.clear()
-        ele.send_keys('eagleeye.iph@gmail.com')
+        src1 = driver.page_source
+        ele11 = bs4.BeautifulSoup(src1, "lxml")
+        summery = ele11.get_text()
+        if not summery.__contains__("It's quick and easy"):
+            print(summery)
+            ele1 = driver.find_element_by_name("email")
+            ele2 = driver.find_element_by_name("pass")
+            # ele1.clear()
 
-        ele = driver.find_element_by_id('pass')
-        ele.clear()
-        ele.send_keys('qwerty#123')
+            ele1.send_keys('7676655676')
+            # ele2.clear()
 
-        ele.send_keys(Keys.ENTER)
+            ele2.send_keys('Appasaheb%1117')
+            ele2.send_keys(Keys.ENTER)
+
+
+        else:
+            ele = driver.find_element_by_id('email')
+            ele.clear()
+            ele.send_keys('7676655676')
+
+            ele = driver.find_element_by_id('pass')
+            ele.clear()
+            ele.send_keys('Appasaheb%1117')
+
+            ele.send_keys(Keys.ENTER)
 
         time.sleep(0.5)
 
@@ -69,7 +86,6 @@ def listener(event):
         result_div = results_src.select('._1yt')
         result_aTag = result_div[0]
         result_links = []
-        data={}
         c=1
         for k in result_aTag.find_all('a', href=True):
             aHref = str(k['href'])
@@ -144,15 +160,15 @@ def listener(event):
             data_overview = " ".join(data_overview)
             data_education = " ".join(data_education)
             data_contact = " ".join(data_contact)
-            data[c]={"name":username,"profile_image":profile_pic,"data_overview":data_overview,"data_education":data_education,"data_contact":data_contact,"recent_posts":posts}
-            c+=1
-        for i in range(1,c):
-            print(data[i])
-        for i in range(1, len(data.keys()) + 1):
-            firebase.put("", "/users/" + username + '/facebook/' + str(i), data[i])
-            firebase.put("", "/users/" + username + '/facebook_state', "false")
-            #time.sleep(2)
-
+            data={}
+            data={"name":username,"profile_image":profile_pic,"data_overview":data_overview,"data_education":data_education,"data_contact":data_contact,"recent_posts":posts}
+            # c+=1
+            # for i in range(1,c):
+            #     print(data[i])
+            # for i in range(1, len(data.keys()) + 1):
+            firebase.put("", "/users/" + username + '/facebook/' + str(c), data)
+            firebase.put("", "/users/" + username + '/facebook_state', "false")    #time.sleep(2)
+            c=c+1
         istate=0
     else:
         abbs=1
