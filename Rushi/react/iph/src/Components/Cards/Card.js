@@ -8,6 +8,8 @@ import Grid from '@material-ui/core/Grid';
 import CardList from './CardList'
 
 
+
+
 const styles = () => ({
     root: {
         width: '100%',
@@ -30,6 +32,7 @@ const styles = () => ({
     
 });
 
+
 class Card extends React.Component {
    
   
@@ -42,14 +45,14 @@ class Card extends React.Component {
 
 
   getListItem() {
-      const { classes, data } = this.props;
+      const { classes, data, info } = this.props;
       console.log(data);
 
       return(
         <div className={classes.container}>
           {
             data.map((item,index) => {
-              return (<CardList item = {item}/>)
+              return (<CardList item = {item} info={info}/>)
             })
           }
         </div>

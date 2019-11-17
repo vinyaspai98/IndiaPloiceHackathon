@@ -118,8 +118,14 @@ class Card extends React.Component {
         })
     }
     getListItem() {
-        const { classes, item } = this.props;
-        console.log(item);
+        const { classes, item , info } = this.props;
+        // console.log(info[item.name.toLowerCase()+'_state']);
+        const loading = info[item.name.toLowerCase()+'_state'];
+        var data = info[item.name.toLowerCase()];
+        if(data !== undefined)
+            data = data.filter(Boolean)
+        console.log(data);
+        
 
         return (
             <div>
@@ -129,62 +135,74 @@ class Card extends React.Component {
                         <img className={classes.img} src={item.img} />
                     </Grid>
                     <Grid item xs={1}>
+                        {
+                        loading === 'true'?
                         <WarningIcon className={classes.icon} />
-                        {/* <CheckCircleIcon  className={classes.icon2}/> */}
+                        :<CheckCircleIcon  className={classes.icon2}/>}
 
                     </Grid>
                     <Grid item xs={8}>
                         <Paper className={classes.paper}>
-                            <Typography>Number of results found ...</Typography>
+                            {
+                                data === undefined?
+                                <Typography>Fetching Data ...</Typography>
+                                :<Typography>Number of results found ==> {data.length}</Typography>
+                            }
 
+                            {
+                                data !== undefined?
+                                <div>
                             {
                                 !this.state.expand ?
                                     <ExpandMoreIcon className={classes.icon3} onClick={this.handleExpand} />
                                     :
                                     <ExpandLessIcon className={classes.icon3} onClick={this.handleExpand} />
                             }
+                            </div>
+                            : null
+                            }
                         </Paper>
-                        {/* <LinearProgress /> */}
+                        {
+                            loading === 'true'?
+                            <LinearProgress />
+                            :null
+                        }
                     </Grid>
 
 
 
                 </Grid>
-                <Grid container spacing={3}>
+                {
+                    this.state.expand && data !== undefined?
+                    <Grid container spacing={3}>
 
                     <Grid item xs={5}>
 
                     </Grid>
                     <Grid item xs={5}>
                         <Paper>
-                            <List component="nav" aria-label="main mailbox folders">
-                                <ListItem
-                                    button
-                                    onClick={() => this.handleListItemClick('heyyy')}
-                                >
-                                    <ListItemIcon>
-                                        <AccountCircleIcon />
-                                    </ListItemIcon>
-                                    <ListItemText primary="Inbox" />
-                                    <ListItemIcon>
-                                        <AddCircleIcon />
-                                    </ListItemIcon>
-                                </ListItem>
-                            </List>
-                            <List component="nav" aria-label="main mailbox folders">
-                                <ListItem
-                                    button
-                                    onClick={() => this.handleListItemClick('heyyy')}
-                                >
-                                    <ListItemIcon>
-                                        <AccountCircleIcon />
-                                    </ListItemIcon>
-                                    <ListItemText primary="Inbox" />
-                                    <ListItemIcon>
-                                        <AddCircleIcon />
-                                    </ListItemIcon>
-                                </ListItem>
-                            </List>
+                            {
+                                data.map((item,index)=>{
+                                    
+                                        return(
+                                            <List component="nav" aria-label="main mailbox folders">
+                                            <ListItem
+                                                button
+                                                onClick={() => this.handleListItemClick(item)}
+                                            >
+                                                <ListItemIcon>
+                                                    <AccountCircleIcon />
+                                                </ListItemIcon>
+                                                <ListItemText primary={item.name} />
+                                                <ListItemIcon>
+                                                    <AddCircleIcon />
+                                                </ListItemIcon>
+                                            </ListItem>
+                                        </List>
+                                        )
+                                })
+                            }
+                           
                         </Paper>
                     </Grid>
 
@@ -192,6 +210,9 @@ class Card extends React.Component {
 
 
                 </Grid>
+                :
+                null
+                }
                 <FullScreenDialog handleClickOpen={this.handleClickOpen} open={this.state.open} />
 
             </div>

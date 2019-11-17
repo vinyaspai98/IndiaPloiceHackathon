@@ -7,20 +7,8 @@ import InputBase from '@material-ui/core/InputBase';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-var firebase = require('firebase');
-var firebaseConfig = {
-  apiKey: "AIzaSyAohuV7Slf-OS59Ufvp65nNtu0g7VjXtyg",
-  authDomain: "iphack.firebaseapp.com",
-  databaseURL: "https://iphack.firebaseio.com",
-  projectId: "iphack",
-  storageBucket: "iphack.appspot.com",
-  messagingSenderId: "136761255722",
-  appId: "1:136761255722:web:679031a1691cf13f24e053"
-};
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
 
-var ref = firebase.database().ref();
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -76,35 +64,10 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function SearchAppBar() {
+export default function SearchAppBar({handleClick}) {
   const classes = useStyles();
 
-  const handleClick = (e) => {
-    if(e.key === 'Enter')
-    {
-
-
-      var playersRef = ref.child("users/"+e.target.value);
-      playersRef.update ({
-        linked_in_state: "true",
-        facebook_state: "true",
-        truecaller_state: "true",
-        instagram_state: "true",
-
-      });
-    //   console.log(e.target.value);
-    //   ref.on("value", function(data) {
-    //     console.log(data.val());
-     
-    //  var newPlayer = data.val();
-    //  console.log("name : " + newPlayer.age);
-     
-     
-    //  }, function (error) {
-    //     console.log("Error: " + error.code);
-    //  });
-    }
-  }
+   
   
   return (
     <div className={classes.root}>
