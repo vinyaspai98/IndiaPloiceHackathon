@@ -9,6 +9,20 @@
       name="description"
       content="Web site created using create-react-app"
     />
+
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+
+
+
+
+
+
     <link rel="apple-touch-icon" href="logo192.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -41,5 +55,21 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyAohuV7Slf-OS59Ufvp65nNtu0g7VjXtyg",
+        authDomain: "iphack.firebaseapp.com",
+        databaseURL: "https://iphack.firebaseio.com",
+        projectId: "iphack",
+        storageBucket: "iphack.appspot.com",
+        messagingSenderId: "136761255722",
+        appId: "1:136761255722:web:679031a1691cf13f24e053"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
+
   </body>
 </html>
