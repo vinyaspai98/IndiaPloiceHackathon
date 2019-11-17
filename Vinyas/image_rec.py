@@ -57,7 +57,7 @@ with open("credentials.csv","r") as input:
 # )
 #
 import boto3
-source_img = 'test.jpeg'
+source_img = 'adarsha_hp.jpg'
 ss=boto3.client('s3',aws_access_key_id=access_key_id,aws_secret_access_key=secret_access_key)
 ss.upload_file(source_img, 'suspectfaces',source_img)
 
@@ -98,7 +98,7 @@ for my_bucket_object in my_bucket.objects.all():
 if(len(detected_faces)>0):
     print(list(detected_faces[0]))
     name=""
-    name1=list(detected_faces[0])[0]
+    name1=list(detected_faces[1])[0]
     for i in name1:
         if(i=="."):
             break

@@ -25,7 +25,7 @@ def listener(event):
         st = '\n'
         fh.write(st)
         driver = webdriver.Chrome('/home/vinyas/Desktop/police_hackathon/chromedriver')
-        driver.get("https://www.facebook.com")
+        driver.get("https://www.facebook.com/login.php?login_attempt=1&lwv=110")
 
         # getIn = input()
 
@@ -141,13 +141,17 @@ def listener(event):
                 friends.append(x.text)
             posts[0]={"last_post_time ":time,"top_related_friends":friends}
             #print(posts)
-            data[c]={"name":username,"profile_pic":profile_pic,"data_overview":data_overview,"data_education":data_education,"data_contact":data_contact,"recent_posts":posts}
+            data_overview = " ".join(data_overview)
+            data_education = " ".join(data_education)
+            data_contact = " ".join(data_contact)
+            data[c]={"name":username,"profile_image":profile_pic,"data_overview":data_overview,"data_education":data_education,"data_contact":data_contact,"recent_posts":posts}
             c+=1
         for i in range(1,c):
             print(data[i])
         for i in range(1, len(data.keys()) + 1):
             firebase.put("", "/users/" + username + '/facebook/' + str(i), data[i])
-            firebase.put("", "/users/" + username + '/facebook_state', "false")    #time.sleep(2)
+            firebase.put("", "/users/" + username + '/facebook_state', "false")
+            #time.sleep(2)
 
         istate=0
     else:
