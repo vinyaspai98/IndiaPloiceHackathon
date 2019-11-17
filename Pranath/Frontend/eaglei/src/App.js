@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import Search from './Components/Searching/Search';
-import CardList from './Components/Cards/cardList';
+import Send from './Components/sendemail/send';
+//import Search from './Components/Searching/Search';
+//import CardList from './Components/Cards/cardList';
 import Icons from './Components/Cards/mapIcon'
 
 class App extends Component {
@@ -17,8 +18,7 @@ class App extends Component {
   render(){
     return (
       <div >
-        <Search />
-        
+        <Send />
       </div>
     );
   }
