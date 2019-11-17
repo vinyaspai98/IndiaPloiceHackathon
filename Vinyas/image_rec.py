@@ -57,7 +57,7 @@ with open("credentials.csv","r") as input:
 # )
 #
 import boto3
-source_img = 'third.jpeg'
+source_img = 'test.jpeg'
 ss=boto3.client('s3',aws_access_key_id=access_key_id,aws_secret_access_key=secret_access_key)
 ss.upload_file(source_img, 'suspectfaces',source_img)
 
@@ -95,8 +95,20 @@ for my_bucket_object in my_bucket.objects.all():
             detected_faces.append((my_bucket_object.key,response["FaceMatches"][0]["Similarity"]))
         print(response["FaceMatches"])
         print("==========================")
+if(len(detected_faces)>0):
+    print(list(detected_faces[0]))
+    name=""
+    name1=list(detected_faces[0])[0]
+    for i in name1:
+        if(i=="."):
+            break
+        name=name+i
+    name=name[:len(name)-1]
+    print("name=="+name)
+else:
+    print("No faces detected")
 
-print(detected_faces)
+
 
 s3 = boto3.resource('s3',aws_access_key_id=access_key_id,aws_secret_access_key=secret_access_key)
 s3.Object("suspectfaces", source_img).delete()

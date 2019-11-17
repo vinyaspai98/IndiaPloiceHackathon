@@ -25,7 +25,7 @@ def listener(event):
     elif istate==0:
         istate=1
         data={}
-        driver = webdriver.Chrome('C:\\Users\\lenovo\\PycharmProjects\\IPH\\chromedriver')
+        driver = webdriver.Chrome('/home/vinyas/Desktop/police_hackathon/chromedriver')
         driver.get('https://www.instagram.com/accounts/login/')
         print("Opened instagram...")
         
@@ -43,7 +43,7 @@ def listener(event):
         time.sleep(3)
         status = driver.find_element_by_xpath("/html/body/span/section/nav/div[2]/div/div/div[2]/input")
         usr=firebase.get('/name',None)
-        firebase.put('','/users/'+usr+'/instagram_state',"yes")
+        # firebase.put('','/users/'+usr+'/instagram_state',"true")
         status.send_keys(usr)
         status.send_keys(Keys.ENTER)
         print("Status trying")
@@ -86,10 +86,10 @@ def listener(event):
             except:
                 asdsaf=1
             if(image != "" and handle_name != "" and bio != "" and bio_name != "" ):
-                data[dc]={"profile_image":image,"handle_name":handle_name,"bio_name":bio_name,"bio":bio}
+                data[dc]={"profile_image":image,"handle_name":handle_name,"name":bio_name,"bio":bio}
                 dc+=1
             elif(image != "" and handle_name != "" and bio_name != ""):
-                data[dc] = {"profile_image": image, "handle_name": handle_name, "bio_name": bio_name, "bio": bio}
+                data[dc] = {"profile_image": image, "handle_name": handle_name, "name": bio_name, "bio": bio}
                 dc+=1
             c+=1
             if c==7:

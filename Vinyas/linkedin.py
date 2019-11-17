@@ -42,7 +42,7 @@ def listener(event):
         usr=firebase.get('/name/', None)
         search.send_keys(usr)
         x=[]
-        firebase.put('','/users/'+usr+'/linked_in_state',"yes")
+        # firebase.put('','/users/'+usr+'/linked_in_state',"yes")
         driver.get('https://www.linkedin.com/search/results/all/?keywords='+usr)
         time.sleep(2)
         ele=driver.page_source
