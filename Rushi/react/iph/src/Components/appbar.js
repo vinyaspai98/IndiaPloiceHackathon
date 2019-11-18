@@ -99,6 +99,8 @@ export default function SearchAppBar({handleClick}) {
               // onChange={UpdateValue}
             />
           </div>
+          
+          
         </Toolbar>
       </AppBar>
     </div>

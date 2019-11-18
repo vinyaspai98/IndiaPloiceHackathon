@@ -3,6 +3,8 @@ import SearchAppBar from './Components/appbar';
 import Card from './Components/Cards/Card';
 import Icons from './Components/Cards/mapIcon';
 import { height } from '@material-ui/system';
+import Button from '@material-ui/core/Button';
+
 var firebase = require('firebase');
 var firebaseConfig = {
   apiKey: "AIzaSyAohuV7Slf-OS59Ufvp65nNtu0g7VjXtyg",
@@ -90,7 +92,20 @@ handleClick = (e) => {
           <Card data={Icons} info={this.state.data}/>
           :null
         }
-      </div>
+      <input
+      accept="image/*"
+      style={{ display: 'none' }}
+      id="raised-button-file"
+      multiple
+      type="file"
+    />
+   
+    <label htmlFor="raised-button-file">
+      <Button variant="raised" component="span" >
+        Upload
+      </Button>
+    </label>
+    </div>
     );
   }
 }
