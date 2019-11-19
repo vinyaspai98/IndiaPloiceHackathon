@@ -43,21 +43,21 @@ def listener(event):
             ele2 = driver.find_element_by_name("pass")
             # ele1.clear()
 
-            ele1.send_keys('7676655676')
+            ele1.send_keys('')
             # ele2.clear()
 
-            ele2.send_keys('Appasaheb%1117')
+            ele2.send_keys('')
             ele2.send_keys(Keys.ENTER)
 
 
         else:
             ele = driver.find_element_by_id('email')
             ele.clear()
-            ele.send_keys('7676655676')
+            ele.send_keys('')
 
             ele = driver.find_element_by_id('pass')
             ele.clear()
-            ele.send_keys('Appasaheb%1117')
+            ele.send_keys('')
 
             ele.send_keys(Keys.ENTER)
 
